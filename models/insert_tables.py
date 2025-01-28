@@ -4,10 +4,10 @@ conexao_insert = sqlite3.connect('conversao.sqlite')
 
 cursor_db_insert = conexao_insert.cursor()
 
-"""CRIAÇÃO DOS INSERTS PARA A API"""
+"""CRIAÇÃO DOS INSERTS NECESSÁRIOS PARA O BANCO DE DADOS"""
 
 
-# criação dos inserts da tabela fahrenheit
+"""criação dos inserts da tabela fahrenheit"""
 def insert_table_fahrenheit():
     cursor_db_insert.execute("INSERT INTO fahrenheit(Celsius, fahrenheit) VALUES ('Celsius: 0', 'Fahrenheit: 32.0');")
     cursor_db_insert.execute("INSERT INTO fahrenheit(Celsius, fahrenheit) VALUES ('Celsius: 1', 'Fahrenheit: 33.8');")
@@ -114,7 +114,7 @@ def insert_table_fahrenheit():
 
 insert_table_fahrenheit()
 
-# criação dos inserts da tabela kelvin
+"""criação dos inserts da tabela kelvin"""
 def insert_table_kelvin():
     cursor_db_insert.execute("INSERT INTO kelvin(Celsius, kelvin) VALUES ('Celsius: 0', 'Kelvin: 273.15');")
     cursor_db_insert.execute("INSERT INTO kelvin(Celsius, kelvin) VALUES ('Celsius: 1', 'Kelvin: 274.15');")
@@ -221,7 +221,7 @@ def insert_table_kelvin():
 
 insert_table_kelvin()
 
-#criação dos inserts da tabela libras
+"""criação dos inserts da tabela libras"""
 def insert_table_libras():
     cursor_db_insert.execute("INSERT INTO libras(quilogramas, libras) VALUES ('Quilogramas: 0', 'Libras: 0.00');")
     cursor_db_insert.execute("INSERT INTO libras(quilogramas, libras) VALUES ('Quilogramas: 1', 'Libras: 2.20');")
@@ -328,7 +328,7 @@ def insert_table_libras():
 
 insert_table_libras()
 
-#criação dos inserts da tavela milhas
+"""criação dos inserts da tavela milhas"""
 def insert_table_milhas():
     cursor_db_insert.execute("INSERT INTO milhas(quilometros, milhas) VALUES ('Quilômetros: 0', 'Milhas: 0.00');")
     cursor_db_insert.execute("INSERT INTO milhas(quilometros, milhas) VALUES ('Quilômetros: 1', 'Milhas: 0.62');")

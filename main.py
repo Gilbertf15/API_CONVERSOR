@@ -1,12 +1,9 @@
 from fastapi import FastAPI, requests
 import uvicorn
-import sqlite3
-"""Conexão com o banco"""
-conexao = sqlite3.connect('conversao.sqlite')
-
-cursor_db = conexao.cursor()
-
-
+from controller.controller_fahrenheit import ControllerFahrenheit
+from controller.controller_kelvin import ControllerKelvin
+from controller.controller_libras import ControllerLibras
+from controller.controller_milhas import ControllerMilhas
 
 #criando api
 app = FastAPI()
@@ -33,147 +30,53 @@ def home_api() -> dict | str:
 
 
 @app.get("/get_celsius_fahrenheit")
-async def get_celsius_fahrenheit() -> dict | str:
-    """"""# função get para buscar as conversôes de Celsius para Fahrenheit
-    try:
-        cursor_db.execute("SELECT Celsius,fahrenheit FROM fahrenheit")
-        resultado = cursor_db.fetchall()
-        convert = resultado
-        return dict(convert)
-
-    except:
-        return "error ao solicitar get_fahrenheit"
+async def get_fahrenheit() -> dict | str:
+    result = await ControllerFahrenheit.get_celsius_fahrenheit()
+    return result
     
 
-
-
+    
 @app.post("/post_fahrenheit/{valor}")
-async def post_celsius_fahrenheit(valor:int | float) -> dict | str:
-    """fução post para fazer uma conversão especifica de Celsius para Fahrenheit"""
-    if valor >  0:
-
-        try:
-            result = (valor*9/5) + 32
-            return {
-                'Celsius': valor,
-                'Fahrenheit': result
-            }
-        
-        except ValueError:
-            return "Error, valor invalido"
-
-        except:
-            return "error ao solicitar post_fahrenheit"
-
-    else:
-        return "valor invalido"
-
+async def post_fahrenhei(valor: int | float) -> dict | str:
+    result = await ControllerFahrenheit.post_celsius_fahrenheit(valor)
+    return result
 
 
 @app.get("/get_celsius_kelvin")
-async def get_celsius_kelvi() -> dict | str:
-    """ função get para buscar as conversôes de Celsius para Kevin """
-    try:
-        cursor_db.execute("SELECT Celsius,kelvin FROM kelvin")
-        result = cursor_db.fetchall()
-        convert_kelvin = result
-        return dict(convert_kelvin)
-
-    except:
-        return "error ao solicitar get_kelvin"
-
+async def get_kelvin() -> dict | str:
+    result = await ControllerKelvin.get_celsius_kelvi()
+    return result
 
 
 @app.post("/post_kelvin/{valor}")
-async def post_celsius_kelvin(valor: int | float) -> dict | str:
-    """ função para fazer uma conversão especifica de Celsius para Kelvin"""
-    try:
-        if valor > 0:
-                result_kelvin = valor + 273.15
-                return {
-                    'Celsius': valor,
-                    'Kelvin': result_kelvin
-                }
-
-        else:
-            return "valor invalido"
-    except ValueError:
-            return "Error, valor invalido"
-    except:
-            return "error ao solicitar"
+async def post_kelvin(valor: int | float) -> dict | str:
+    result = await ControllerKelvin.post_celsius_kelvin(valor)
+    return result
 
 
 @app.get("/get_quilogramas_libras")
-async def get_quilograamas_libras() -> dict | str:
-    """# função get para buscar as conversôes de quilogramas  para libras """
-    try:
-        cursor_db.execute("SELECT quilogramas,libras FROM libras")
-        result_libras = cursor_db.fetchall()
-        convert_libras = result_libras
-        return dict(convert_libras)
-    
-    except:
-        return "error ao solicitar get_quilogramas_libras"
-    
+async def get_quilogramas() -> dict | str:
+    result = await ControllerLibras.get_quilograamas_libras()
+    return result
 
 
 @app.post("/quilogramas_libras/{valor}")
-async def post_quilogramas(valor: int | float) -> dict | str:
-    """função post para fazer uma conversão especifica de quilogramas para libras"""
-    try:
-        if valor > 0 :
-
-            
-                result_libras = valor * 2.20462
-                return {
-                    'Quilogramas': valor,
-                    'Libras': result_libras
-                }
-        else:
-            return "valor invalido"           
-    except ValueError:
-                return "Error, valor invalido"
-    
-    except:
-            return "error ao solicitar quilogramas_libras"
-
-    
-
+async def post_quilogramas_libras(valor: int | float) -> dict | str:
+    result = await ControllerLibras.post_quilogramas(valor)
+    return result
 
 
 @app.get("/get_quilometros_mihas")
-async def get_quilometros_milhas() -> dict | str:
-    """função get para buscar as conversôes de quilometros para milhas"""
-    try:
-        cursor_db.execute("SELECT quilometros,milhas FROM milhas")
-        result_milhas = cursor_db.fetchall()
-        convert_milhas = result_milhas
-        return dict(convert_milhas)
-    except:
-        return "error ao solicitar get_quilometros_milhas"
-
+async def get_quilometros():
+    result = await ControllerMilhas.get_quilometros_milhas()
+    return result
 
 
 @app.post("/quilometros_milhas/{valor}")
-async def post_quilometros(valor: int | float) -> dict | str:
-    """função post para fazer uma conversão especifica de quilometros para milhas"""
-    try:
-        if valor > 0:
+async def post_quilometros_milhas(valor: int | float) -> dict | str:
+    result = await  ControllerMilhas.post_quilometros(valor)
+    return result
 
-        
-                result_milhas = valor * 0.621371
-                return {
-                    'Quilometros':valor,
-                    'milhas': result_milhas
-                }
-    
-        else:
-            return "valor invalido"
-    except ValueError:
-        return "Error, valor invalido"
-    except:
-        return "error ao solicitar quilometros_milhas"
-        
 
 if __name__ == '__main__':
     uvicorn.run(app, port=8000)
