@@ -1,3 +1,6 @@
 __pycache__
 env
-conversao.sqlite
+conversao.db
+insert_tables.py
+*.sqlite
+.env

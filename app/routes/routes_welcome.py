@@ -1,31 +1,15 @@
-from app.routes.routes_fahrenheit import router_fahrenheit
-from app.routes.routes_kelvin import router_kelvin
-from app.routes.routes_libras import router_quilogramas_libras
-from app.routes.routes_milhas import router_milhas
-import requests
+from fastapi import APIRouter
 
-from app.main.main_api import APICONVERT, FastAPI
-import uvicorn
 
-class MainRoutes:
-    """_summary_
-    """
-    @staticmethod
-    def main_include_routes(app=FastAPI):
-        """_summary_
+class RouterWelcome(APIRouter):
+   def __init__(self, prefix = ""):
+       super().__init__(prefix=prefix)
+       self.prefix = prefix
 
-        Args:
-            app (_type_): _description_
 
-        """
-        app.include_router(router_fahrenheit)
-        app.include_router(router_kelvin)
-        app.include_router(router_quilogramas_libras)
-        app.include_router(router_milhas)
-       
+router_welcome = RouterWelcome("/welcome")
 
-app = APICONVERT()
-@app.get("/")
+@router_welcome.get("/")
 async def home_api() -> dict | str:
     """Crição de rota principal com instruções sobre a API 
     """
@@ -41,14 +25,7 @@ async def home_api() -> dict | str:
             '[GET]: /quilometros_mihas/get': 'Para solicitar os valores de 0 a 100 convertidos de QUILOMETROS para MILHAS',
             '[POST]: /quilometros_milhas/post/valor': 'Para buscar uma conversão específica de QUILOMETROS para MILHAS'
         }
-    except requests.exceptions.HTTPError as e:
-        return f"error API {e}"
-    
-    except requests.exceptions.ConnectionError:
-        return "Error connection"
+    except:
+        return "error API"
 
-MainRoutes.main_include_routes(app)
 
- 
-if __name__ == '__main__':
-    uvicorn.run(app, port=8000)
