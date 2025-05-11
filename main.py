@@ -8,14 +8,14 @@ from app.main.main_api import APICONVERT, FastAPI
 import uvicorn
 
 class MainRoutes:
-    """_summary_
+    """classe MAin da api
     """
     @staticmethod
     def main_include_routes(app=FastAPI):
-        """_summary_
+        """ método para incluir as rotas 
 
         Args:
-            app (_type_): _description_
+            app (FastAAPI): Instância de FastAPI
 
         """
         app.include_router(router_fahrenheit)
@@ -27,7 +27,7 @@ class MainRoutes:
 app = APICONVERT()
 @app.get("/")
 async def home_api() -> dict | str:
-    """Crição de rota principal com instruções sobre a API 
+    """Crição da rota home com instruções sobre a API 
     """
     try:
         return {

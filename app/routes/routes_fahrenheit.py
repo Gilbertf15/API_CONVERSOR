@@ -10,10 +10,10 @@ router_fahrenheit = RouterFahrenheit("/fahrenheit")
 
 @router_fahrenheit.get("/get")
 async def get_fahrenheit() -> dict | str:
-    """_summary_
+    """ MÉTODO ASSINCRONO DA  ROTA GET_FAHRENHEIT
 
     Returns:
-        dict | str: _description_
+        dict | str: espera como resultado do método estático get_convert() da classe ControllerFahrenheit
     """
     result = await ControllerFahrenheit.get_convert()
     return result
@@ -21,13 +21,13 @@ async def get_fahrenheit() -> dict | str:
 
 @router_fahrenheit.post("/post/{valor}")
 async def post_fahrenhei(valor: int | float) -> dict | str:
-    """_summary_
+    """ MÉTODO ASSINCRONO  DA ROTA POST_FAHRENHEIT
 
     Args:
-        valor (int | float): _description_
+        valor (int | float): valor númerico esperado no argumento posicional "valor".
 
     Returns:
-        dict | str: _description_
+        dict | str: espera como resultado do método estático post_convert() da classe ControllerFahrenheit
     """
     result = await ControllerFahrenheit.post_convert(valor)
     return result

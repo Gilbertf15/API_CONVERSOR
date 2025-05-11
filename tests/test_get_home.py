@@ -5,6 +5,7 @@ client =  TestClient(app)
 
 
 def test_get_home():
+    # Teste da rota Home
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {

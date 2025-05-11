@@ -11,10 +11,10 @@ router_kelvin = RouterKelvin("/kelvin")
 
 @router_kelvin.get("/get")
 async def get_kelvin() -> dict | str:
-    """_summary_
+    """ MÉTODO ASSINCRONO DA ROTA GET_KELVIN
 
     Returns:
-        dict | str: _description_
+        dict | str: Retorna o resultado do método estático get_convert() da classe ControllerKelvin
     """
     result = await ControllerKelvin.get_convert()
     return result
@@ -22,13 +22,13 @@ async def get_kelvin() -> dict | str:
 
 @router_kelvin.post("/post/{vallor}")
 async def post_kelvin(valor: int | float) -> dict | str:
-    """_summary_
+    """MÉTODO ASSINCRONO DA ROTA POST_KELVIN
 
     Args:
-        valor (int | float): _description_
+        valor (int | float): valor númerico esperado no argumento posicional "valor".
 
     Returns:
-        dict | str: _description_
+        dict | str: Retorna o resultado do método estático post_convert() da classe ControllerKelvin
     """
     result = await ControllerKelvin.post_convert(valor)
     return result
