@@ -21,7 +21,7 @@ async def get_quilometros():
     return result
 
 
-@router_milhas.post("/post")
+@router_milhas.post("/post/{valor}")
 async def post_quilometros_milhas(valor: int | float) -> dict | str:
     """MÉTODO ASSINCRONO DA ROTA POST QUIMÔMETROS
 
