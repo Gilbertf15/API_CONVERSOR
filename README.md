@@ -1,60 +1,116 @@
-# API_CONVERSOR
+# ⚡ API Conversor de unidades - FastAPI
 
-<img align="center"
-    src="img_readme/home.png"/>
+> API criada em FastApi para a conversão de algumas unidades de temperatura, peso e distância, com métodos GET para acessar os valores convertidos de 0 a 100, e métodos POST para converter um valor específico.
 
-#### endpoint para acessar os valores convertidos de Celsius para Fahrenheit de 0 a 100:
+![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-green)
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+![Licença](https://img.shields.io/badge/licença-MIT-blue)
 
-#### /get_celsius_fahrenheit
+---
 
-<img align="center"
-    src="img_readme/get_fahrenheit.png"/>
+## 📑 Sumário
 
-#### endpoint para calcular a conversão de um valor específico de Celsius para Fahrenheit:
+- [📘 Sobre o Projeto](#-sobre-o-projeto)
+- [🚀 Tecnologias Utilizadas (Padrão)](#-tecnologias-utilizadas-padrão)
+- [📁 Estrutura de Pastas (Modelo Base)](#-estrutura-de-pastas-modelo-base)
+- [⚙ Instalação](#-instalação)
+- [▶ Como Usar](#-como-usar)
+- [🧪 Testes](#-testes)
+- [🛠 Contribuindo](#-contribuindo)
+- [📄 Licença](#-licença)
+- [📫 Contato](#-contato)
 
-#### /post_fahrenheit/valor
+---
 
-<img align="center"
-    src="img_readme/post_fahrenheit.png"/>
+## 📘 Sobre o Projeto
 
-#### endpoint para acessar os valores convertidos de Celsius para Kelvin de 0 a 100:
+Projeto desenvolvido com FastAPI, api para conversão de unidades( temperatura, peso, distãncia)
 
-#### /get_celsius_kelvin
+Funcionalidades principais:
 
-<img align="center"
-    src="img_readme/get_kelvin.png"/>
+- 🚀 Conversão de fahrenheit para celsius (GET, POST)
+- 🚀 Conversão de celsius para kelvin (GET, POST)
+- 🚀 Conversão de quilogramas para libras (GET, POST)
+- 🚀 Conversão quilometros para milhas
+- 🛢 Integração com banco de dados relacional (SQLite)
 
-#### endpoint para calcular a conversão de um valor específico de Celsius para Kelvin:
+---
 
-#### /post_kelvin/valor
+## 🚀 Tecnologias Utilizadas (Padrão)
 
-<img align="center"
-    src="img_readme/post_kelvin.png"/>
+Este projeto usa a seguinte stack padrão:
 
-#### endpoint para acessar so valores convertidos de Quilogramas para Libras de 0 a 100:
+- _Python 3.11+_
 
-#### /get_quilogramas_libras
+- _FastAPI 0.110+_
 
-<img align="center"
-    src="img_readme/get_libras.png"/>
+- _SQLite_
 
-#### endpoint para calcular o conversão de um valor específico de Quilogramas para Libras:
+- _pytest_ ou _unittest_
 
-#### /quilogramas_libras/valor
+---
 
-<img align="center"
-    src="img_readme/post_libras.png"/>
+## 📁 Estrutura de Pastas (Modelo Base)
 
-#### endpoint para acessar os valores convertidos de Quilômetros para Milhas:
+```bash
+📦 nome-do-projeto
+├── 📁 app/                    # Código principal
+│   ├── 📁main/               #  contém a classe de criação do objeto FastApi
+│       ├── __init__.py
+│   ├── 📁 controller/ # pasta de controllers de aplicação
+│        ├── __init__.py
+│   ├── 📁 interface/ # contém a classe abstrata que é inplementada nos controllers
+│        ├── __init__.py
+│   ├── 📁 models/ # criação das tabelas e da classe de conexão do banco
+│        ├── __init__.py
+│   ├── 📁 rotas/ # rotas da aplicação
+│        ├── __init__.py
+│
+│   📁 img_readme/ # imagens da documentação
+│
+├── 📁 tests/                 # Testes automatizados
+├── .env                     # Variáveis de ambiente
+├── .gitignore
+├── LICENSE                   # Licensa da aplicação
+├── requirements.txt
+├── .readem_doc.dm             # documentação
+├── README.md
+└── main.py                   # Script para rodar a aplicação
+```
 
-#### /get_quilometros_mihas
+## ⚙️ Instalação
 
-<img align="center"
-    src="img_readme/get_milhas.png"/>
+# 1. Clone o repositório
 
-#### endpoint para calcular a conversão de um valor epecífico de Quilômetros para Milhas:
+git clone https://github.com/Gilbertf15/API_CONVERSOR.git
 
-#### /quilometros_milhas/valor
+# 2. Crie e ative o ambiente virtual
 
-<img align="center"
-    src="img_readme/post_milhas.png"/>
+python -m venv venv
+
+source venv/bin/activate # Linux/macOS
+
+venv\Scripts\activate # Windows
+
+# 3. Instale as dependências
+
+pip install -r requirements.txt
+
+## ▶️ Como usar
+
+## Execute o seguinte comando:
+
+uvicorn main:app -reload
+
+## 📫 Contato
+
+    Gmail: gilbertcorreia18@gmail.com
+
+## 🧪 Testes
+
+│ Esse projeto conta com alguns testes unitarios, testando os métodos das classes individualmente.
+
+### execute o seguinte comando:
+
+#### no windows: python test/teste_main.py
